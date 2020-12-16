@@ -1,9 +1,7 @@
-from os import environ, path
+from os import path
 
 from pocketsphinx.pocketsphinx import *
 import pronouncing
-from sphinxbase.sphinxbase import *
-
 MODELDIR = "./model"
 DATADIR = "./test/data"
 
@@ -12,6 +10,7 @@ config = Decoder.default_config()
 config.set_string('-hmm', path.join(MODELDIR, 'en-us/en-us'))
 config.set_string('-lm', path.join(MODELDIR, 'en-us/en-us.lm.bin'))
 config.set_string('-dict', path.join(MODELDIR, 'en-us/cmudict-en-us.dict'))
+config.set_string('-logfn','nul')
 decoder = Decoder(config)
 
 # Decode streaming data.
@@ -30,7 +29,7 @@ while True:
         break
 decoder.end_utt()
 
-print('Best hypothesis segments: ', [seg.word for seg in decoder.seg()])
+# print('Best hypothesis segments: ', [seg.word for seg in decoder.seg()])
 
 siln = ['</s>', '<s>', '<sil>']
 words = []
@@ -40,6 +39,6 @@ for word in [seg.word for seg in decoder.seg()]:
         for char in word:
             if char.isalpha() or char == "'":
                 new_word += char
-        print(new_word, pronouncing.phones_for_word(new_word))
+        print('{}: {}'.format(new_word, pronouncing.phones_for_word(new_word)))
 
 
