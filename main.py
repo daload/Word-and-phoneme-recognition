@@ -1,7 +1,7 @@
 from os import path
-
 from pocketsphinx.pocketsphinx import *
 import pronouncing
+
 MODELDIR = "./model"
 DATADIR = "./test/data"
 
@@ -17,8 +17,7 @@ decoder = Decoder(config)
 decoder = Decoder(config)
 decoder.start_utt()
 
-# stream = open(path.join(DATADIR, 'f2bjrop1.0.wav'), 'rb')
-# stream = open(path.join(DATADIR, 'f2bjrop1.1.wav'), 'rb')
+# File names: 'f2bjrop1.0.wav', 'f2bjrop1.1.wav', 'f2btrop6.0.wav'
 stream = open(path.join(DATADIR, 'f2btrop6.0.wav'), 'rb')
 
 while True:
@@ -29,8 +28,8 @@ while True:
         break
 decoder.end_utt()
 
-# print('Best hypothesis segments: ', [seg.word for seg in decoder.seg()])
 
+# print('Best hypothesis segments: ', [seg.word for seg in decoder.seg()])
 siln = ['</s>', '<s>', '<sil>']
 words = []
 for word in [seg.word for seg in decoder.seg()]:
