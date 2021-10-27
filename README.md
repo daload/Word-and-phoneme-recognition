@@ -36,3 +36,11 @@ This is an example of how you may recognize words and phonemes given and audio f
 2. Install packages
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
+
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+* [Dragris](https://github.com/Dragris)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
